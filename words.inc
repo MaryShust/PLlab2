@@ -1,20 +1,8 @@
 %include "colon.inc"
 
 section .data
-    colon "first item", first
-    db "the first one", 0
+    colon "hello", hello
+    db "goodbye", 0 
 
-    colon "vsem privet, ya tut", vpyt
-    db "i tebe privet", 0
-
-    colon "oleg", oleg
-    db "Privet!", 0
-
-    colon "next word", next
-    db "next", 0
-
-    colon "", empty
-    db "pusto", 0
-
-    colon " ", a_little_empty
-    db "nemnogo pusto", 0
+    colon "world", world
+    db "world", 0
