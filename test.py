@@ -3,7 +3,7 @@ import unittest
 
 class TestDictionary(unittest.TestCase):
     def run_program(self, input_data):
-        path = './main'
+        path = './lab2'
         result = subprocess.run([path], input=input_data, text=True, capture_output=True)
         return result.stdout, result.stderr
 
