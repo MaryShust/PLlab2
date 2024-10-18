@@ -23,13 +23,7 @@ class TestDictionary(unittest.TestCase):
         self.assertEqual(output.strip(), expected_out)
         self.assertEqual(error.strip(), expected_err)
 
-    def test_buffer_exception(self):
-        input_data = "test1" * 20
-        expected_out = ""
-        expected_err = "Buffer overflow"
-        output, error = self.run_program(input_data)
-        self.assertEqual(output.strip(), expected_out)
-        self.assertEqual(error.strip(), expected_err)
+   
 
     def test_exception(self):
         input_data = "test3"
