@@ -6,3 +6,6 @@ section .data
 
     colon "test2", test2
     db "test2_2", 0
+
+    colon "test3", test3
+    db "test3_3", 0
