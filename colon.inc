@@ -1,9 +1,8 @@
-%define lw 0
+%define last 0
 %macro colon 2
 
 %2: 
-    dq lw
+    dq last
     db %1,0
-%define lw %2 
+%define last %2 
 %endmacro
-
