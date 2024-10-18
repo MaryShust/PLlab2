@@ -1,8 +1,8 @@
 %include "colon.inc"
 
 section .data
-    colon "hello", hello
-    db "goodbye", 0 
+    colon "test1", test1
+    db "test1_1", 0 
 
-    colon "world", world
-    db "world", 0
+    colon "test2", test2
+    db "test2_2", 0
