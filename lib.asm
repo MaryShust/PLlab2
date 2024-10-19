@@ -277,42 +277,46 @@ string_copy:
 ; функция для чтения строки
 ; ввод-вывод как в read_word
 read_str:
-    push r12      ; будем использовать для адреса(rdi)
-    push r13      ; будем использовать для размера(rsi), чтобы не выйти за него и контрить это
-    push r14      ; будем использовать для смещения
+  push r14
+  push r15
+  xor r14, r14
+  mov r15, rsi
+  dec r15
 
-    mov r12, rdi
-    mov r13, rsi
-    xor r14, r14
+  .read_first:
+    push rdi
+    call read_char
+    pop rdi  
+    cmp al, 10
+    je .read_success
+    test al, al
+    jz .read_success
 
-.loop:
-    call read_char ; в rax char
+  .read_next:
+    mov byte [rdi + r14], al
+    inc r14   
+    push rdi
+    call read_char
+    pop rdi
+    cmp al, 10
+    je .read_success
+    test al, al
+    jz .read_success
+    cmp r14, r15
+    je .read_err
+    jmp .read_next
 
-    cmp rax, 0x0A  ; проверка на \n
-    je .end_inp    ; если \n, завершаем чтение
+  .read_success:
+    mov byte [rdi + r14], 0
+    mov rax, rdi
+    mov rdx, r14
+    pop r15
+    pop r14
+    ret
 
-    mov byte[r12 + r14], al ; записываем символ в буфер
-
-    test rax, rax ; проверка на конец потока
-    jz .end_inp
-
-    inc r14
-    cmp r14, r13  ; проверка на отсутствие переполнения, если не записать, а надо, то переход
-    jge .err
-    jmp .loop
-
-.err:
+  .read_err:
     xor rax, rax
     xor rdx, rdx
-    jmp .end
-
-.end_inp:
-    mov byte[r12 + r14], 0 ; заменяем символ новой строки на нулевой символ
-    mov rax, r12
-    mov rdx, r14
-
-.end:
+    pop r15
     pop r14
-    pop r13
-    pop r12
     ret
