@@ -16,12 +16,4 @@ global parse_int
 global string_copy
 global read_str
 
-extern exit
-extern print_newline
-extern print_string
-extern find_word
-extern read_str
-extern read_word
-
 %endif
-
