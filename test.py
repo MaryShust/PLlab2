@@ -8,8 +8,8 @@ class TestDictionary(unittest.TestCase):
         return result.stdout, result.stderr
 
     def test_1(self):
-        input_data = "next word"
-        expected_out = "next"
+        input_data = "test3"
+        expected_out = "test3_3"
         expected_err = ""
         output, error = self.run_program(input_data)
         self.assertEqual(output.strip(), expected_out)
@@ -24,8 +24,8 @@ class TestDictionary(unittest.TestCase):
         self.assertEqual(error.strip(), expected_err)
 
     def test_3(self):
-        input_data = "oleg"
-        expected_out = "Privet!"
+        input_data = "test2"
+        expected_out = "test2_2"
         expected_err = ""
         output, error = self.run_program(input_data)
         self.assertEqual(output.strip(), expected_out)
