@@ -32,7 +32,7 @@ _start:
 	test rax, rax
 	jz .bad
 	mov rdi, rax
-	mov rsi, lw
+	mov rsi, last
 	call find_word
 	test rax, rax
 	jz .bad
