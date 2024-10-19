@@ -4,41 +4,33 @@ find_word:
     push rbx
     push r12
     push r13
-    sub rsp, 8      
-    mov r12, rsi       
-    xor r13, r13
-
+    sub rsp, 8
+    mov r12, rsi        ; Устанавливаем указатель на первый элемент словаря
+    xor rax, rax        ; Обнуляем rax (используется для хранения результата)
 .loop:
-    cmp r12, 0          ; Не достигли ли конца
-    je .not_found       ; Если достигли, переходим к .not_found
-
-    lea rsi, [r12 + 8]  ; Устанавливаем rsi на ключ текущего элемента словаря
+    test r12, r12       ; Проверяем, не нулевой ли указатель
+    jz .not_found       ; Если да, то переходим к .not_found
+    lea rsi, [r12 + 8]  ; Указываем на ключ текущего элемента словаря
     push rdi
     push rsi
-    call string_length  ; Находим длину, понадобится для вывода
-    mov r13, rax
+    call string_length   ; Получаем длину ключа
+    mov r13, rax        ; Сохраняем длину в r13
     pop rsi
     pop rdi
-    call string_equals  ; Сравниваем строки
-    cmp rax, 1          ; Проверяем, равны, или нет
-    je .found           
-
-    mov r12, qword[r12] ; Переходим к следующему элементу словаря
-    jmp .loop           
-
-.found:
-    ; Адрес начала вхождения в словарь
-    mov rax, r12       
-    add rax, r13       
-    inc rax
-    jmp .end         
-
+    call string_equals   ; Сравниваем строки
+    test rax, rax        ; Проверяем, равны ли строки
+    jz .next             ; Если не равны, переходим к следующему элементу
+    ; Слова совпали
+    lea rax, [r12 + r13 + 8] ; Указываем на адрес начала совпадения
+    jmp .end             ; Переходим к завершению
+.next:
+    mov r12, [r12]      ; Переходим к следующему элементу словаря
+    jmp .loop            ; Продолжаем цикл
 .not_found:
-    mov rax, 0          ; 0, если не нашли
-
+    xor rax, rax        ; Устанавливаем rax в 0 (что означает, что не нашли)
 .end:
     pop r13
-    pop r12             
-    pop rbx             
-    add rsp, 8          ; Возвращаем всё на место
-    ret                 
+    pop r12
+    pop rbx
+    add rsp, 8          ; Восстанавливаем стек
+    ret
