@@ -17,7 +17,7 @@ _start:
 
     ; Поиск слова
     mov rdi, buffer
-    mov rsi, last
+    mov rsi, end_point 
       
     test rax, rax
     je .overflow
