@@ -7,7 +7,7 @@ class TestDictionary(unittest.TestCase):
         result = subprocess.run([path], input=input_data, text=True, capture_output=True)
         return result.stdout, result.stderr
 
-    def test_next_word(self):
+    def test_1(self):
         input_data = "next word"
         expected_out = "next"
         expected_err = ""
@@ -15,15 +15,15 @@ class TestDictionary(unittest.TestCase):
         self.assertEqual(output.strip(), expected_out)
         self.assertEqual(error.strip(), expected_err)
 
-    def test_buffer_overflow(self):
-        input_data = "eto perepolnenie " * 17
+    def test_2(self):
+        input_data = "test " * 27
         expected_out = ""
         expected_err = "Buffer overflow"
         output, error = self.run_program(input_data)
         self.assertEqual(output.strip(), expected_out)
         self.assertEqual(error.strip(), expected_err)
 
-    def test_oleg(self):
+    def test_3(self):
         input_data = "oleg"
         expected_out = "Privet!"
         expected_err = ""
@@ -31,7 +31,7 @@ class TestDictionary(unittest.TestCase):
         self.assertEqual(output.strip(), expected_out)
         self.assertEqual(error.strip(), expected_err)
 
-    def test_exception(self):
+    def test_4(self):
         input_data = "not true"
         expected_out = ""
         expected_err = "Word not found"
