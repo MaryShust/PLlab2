@@ -16,7 +16,7 @@ extern print_string
 extern print_newline
 
 _start:
-	mov rsi, lw
+	mov rsi, last
 .link_loop:
 	mov r12, rsi  ; текущий элемент
 	mov rsi, [rsi] ; адрес предыдущего
