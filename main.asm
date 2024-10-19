@@ -1,5 +1,4 @@
-%include "lib.inc"
-%include "dict.inc"
+%include "main.inc"
 %include "words.inc"
 
 section .data
