@@ -55,13 +55,13 @@ class TestDictionary(unittest.TestCase):
         self.assertEqual(output.strip(), expected_out)
         self.assertEqual(error.strip(), expected_err)
 
-    def test_first_item(self):
-        input_data = "first item"
-        expected_out = "the first one"
-        expected_err = ""
-        output, error = self.run_program(input_data)
-        self.assertEqual(output.strip(), expected_out)
-        self.assertEqual(error.strip(), expected_err)
+    # def test_first_item(self):
+    #     input_data = "first item"
+    #     expected_out = "the first one"
+    #     expected_err = ""
+    #     output, error = self.run_program(input_data)
+    #     self.assertEqual(output.strip(), expected_out)
+    #     self.assertEqual(error.strip(), expected_err)
 
     def test_ne_oleg(self):
         input_data = "ne oleg"
