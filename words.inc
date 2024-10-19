@@ -12,9 +12,3 @@ section .data
 
     colon "next word", next
     db "next", 0
-
-    colon "", empty
-    db "pusto", 0
-
-    colon " ", a_little_empty
-    db "nemnogo pusto", 0
