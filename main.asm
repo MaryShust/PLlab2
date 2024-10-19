@@ -16,7 +16,7 @@ extern print_string
 extern print_newline
 
 _start:
-	mov rsi, last
+	mov rsi, end_point
 .link_loop:
 	mov r12, rsi  ; текущий элемент
 	mov rsi, [rsi] ; адрес предыдущего
@@ -32,7 +32,7 @@ _start:
 	test rax, rax
 	jz .bad
 	mov rdi, rax
-	mov rsi, last
+	mov rsi, end_point
 	call find_word
 	test rax, rax
 	jz .bad
