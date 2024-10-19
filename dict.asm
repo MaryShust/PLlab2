@@ -1,6 +1,30 @@
 %include "dict.inc"
 
 find_word:
+    .process:
+        test rsi, rsi ;проверка на конец списка
+        jz .not_found ;нужное значение не найдено
+        push rdi
+        push rsi ;сохраняем регистры перед вызовом функции
+        add rsi, 8 ;адрес ключа (8 byte - длина адреса)
+        call string_equals ;проверка на искомое значение
+        pop rsi
+        pop rdi ;возвращаем регистры
+        test rax, rax ;если у нас не ноль - мы нашли нужное!
+        jnz .found
+        mov rsi, [rsi] ;на следующий круг со следующим адресом
+        jmp .process
+
+    .not_found:
+        xor rax, rax
+        ret
+
+    .found:
+        mov rax, rsi
+        ret
+
+
+find_word2:
     push rbx
     push r12
     push r13
