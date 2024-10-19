@@ -13,7 +13,7 @@ _start:
     ; Чтение строки
     mov rdi, buffer
     mov rsi, 255
-    call read_str
+    call read_word
 
     ; Поиск слова
     mov rdi, buffer
