@@ -16,7 +16,7 @@ class TestDictionary(unittest.TestCase):
         self.assertEqual(error.strip(), expected_err)
 
     def test_buffer_overflow(self):
-        input_data = "next word " * 17
+        input_data = "next word" * 17
         expected_out = ""
         expected_err = "Buffer overflow"
         output, error = self.run_program(input_data)
