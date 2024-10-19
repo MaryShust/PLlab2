@@ -4,9 +4,6 @@ section .data
     colon "first item", first
     db "the first one", 0
 
-    colon "vsem privet, ya tut", vpyt
-    db "i tebe privet", 0
-
     colon "oleg", oleg
     db "Privet!", 0
 
