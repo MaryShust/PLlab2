@@ -297,9 +297,6 @@ read_str:
     jz .end_inp
 
     inc r14
-    jmp .cont
-
-.cont:
     cmp r14, r13  ; проверка на отсутствие переполнения, если не записать, а надо, то переход
     jge .err
     jmp .loop
