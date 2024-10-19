@@ -272,3 +272,48 @@ string_copy:
 .return:
     ret
 
+; функция для чтения строки
+; ввод-вывод как в read_word
+read_str:
+    push r12      ; будем использовать для адреса(rdi)
+    push r13      ; будем использовать для размера(rsi), чтобы не выйти за него и контрить это
+    push r14      ; будем использовать для смещения
+
+    mov r12, rdi
+    mov r13, rsi
+    xor r14, r14
+
+.loop:
+    call read_char ; в rax char
+
+    cmp rax, 0x0A  ; проверка на \n
+    je .end_inp    ; если \n, завершаем чтение
+
+    mov byte[r12 + r14], al ; записываем символ в буфер
+
+    test rax, rax ; проверка на конец потока
+    jz .end_inp
+
+    inc r14
+    jmp .cont
+
+.cont:
+    cmp r14, r13  ; проверка на отсутствие переполнения, если не записать, а надо, то переход
+    jge .err
+    jmp .loop
+
+.err:
+    xor rax, rax
+    xor rdx, rdx
+    jmp .end
+
+.end_inp:
+    mov byte[r12 + r14], 0 ; заменяем символ новой строки на нулевой символ
+    mov rax, r12
+    mov rdx, r14
+
+.end:
+    pop r14
+    pop r13
+    pop r12
+    ret
