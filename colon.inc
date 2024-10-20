@@ -8,9 +8,3 @@ db %1, 0
 
 %define lw %%lw			; константа для адреса следующей строки
 %endmacro
-
-colon "hello", hello
-db "goodbye", 0 
-
-colon "world", world
-db "world", 0
