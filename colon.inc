@@ -1,26 +1,10 @@
-%ifndef colon_inc
-%define colon_inc
+%define end_point 0
 
-%define lw 0
+%macro colon 2			; начало макроса - принимает 2 параметра: строку и указатель
 
-%macro colon 2
-%%la: dq lw
-dq 0
-db %1, 0
-%2:
-%define lw %%la
+%%lw: dq end_point 			; временная переменная для хранения указателя на след строку
+db %1, 0 			
+%2:						; метка из 2 параметра
+
+%define end_point %%lw			; константа для адреса следующей строки
 %endmacro
-
-colon "colo", colo
-db 'colon rulez', 0
-
-colon "reasons_to_live", reasons_to_live
-db '0', 0
-
-colon "third", third
-db 'trird', 0
-
-colon "four", four
-db 'four', 0
-
-%endif
