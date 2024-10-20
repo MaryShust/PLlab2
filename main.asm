@@ -3,8 +3,8 @@
 
 section .data
     buffer: times 256 db 0
-    not_found_word: db "Word not found"
-    very_long: db "Buffer overflow"
+    not_found_word: db "Error: Word not found"
+    very_long: db "Error: Buffer overflow"
 
 section .text
 global _start
